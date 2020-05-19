@@ -1,5 +1,6 @@
 package com.guapi.coolweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.guapi.coolweather.gson.Forecast;
 import com.guapi.coolweather.gson.Weather;
+import com.guapi.coolweather.service.AutoUpdateService;
 import com.guapi.coolweather.util.HttpUtil;
 import com.guapi.coolweather.util.Utility;
 
@@ -182,6 +184,8 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText("洗车指数："+weather.suggestion.carWash.info);
         sportText.setText("运动建议："+weather.suggestion.sport.info);
         weatherLayout.setVisibility(View.VISIBLE);
+        Intent intent=new Intent(this,AutoUpdateService.class);
+        startService(intent);
     }
     /**
      * 获取必应每日一图
